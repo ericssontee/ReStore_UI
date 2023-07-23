@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Product } from "../models/product";
 import Catalog from "../../features/catalog/Catalog";
-import { Typography } from "@mui/material";
+import { Container, CssBaseline } from "@mui/material";
+import Header from "./Header";
 
 function App() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -19,17 +20,20 @@ function App() {
         id: prevState.length + 101,
         name: "product" + (prevState.length + 1),
         price: prevState.length * 100,
-        brand: 'Some brand',
-        description: 'Some description',
-        pictureUrl: 'https://picsum.photos/200'
+        brand: "Some brand",
+        description: "Some description",
+        pictureUrl: "https://picsum.photos/200",
       },
     ]);
   }
 
   return (
     <>
-      <Typography variant="h1">Re-Store</Typography>
-      <Catalog products={products} addProduct={addProduct}/>
+      <CssBaseline />
+      <Header />
+      <Container>
+        <Catalog products={products} addProduct={addProduct} />
+      </Container>
     </>
   );
 }
