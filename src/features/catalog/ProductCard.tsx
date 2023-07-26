@@ -39,12 +39,12 @@ export default function ProductCard({ product }: Props) {
           ${(product.price / 100).toFixed(2)}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {product.brand} / {product.type}s
+          {product.brand} / {product.type}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>
-        <Button component={Link} to={`/catalog/${product.id}`} size="small">Learn More</Button>
+        <Button component={Link} to={`/catalog/${product.id}`} size="small">View</Button>
       </CardActions>
     </Card>
   );
