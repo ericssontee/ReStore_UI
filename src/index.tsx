@@ -8,22 +8,23 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./app/router/Routes";
-import { StoreProvider } from "./app/context/StoreContext";
-import { ConfigureStore } from "./app/store/configureStore";
+// import { StoreProvider } from "./app/context/StoreContext";
+// import { ConfigureStore } from "./app/store/configureStore";
 import { Provider } from "react-redux";
+import { store } from "./app/store/configureStore";
 
-const store = ConfigureStore();
+// const store = ConfigureStore();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <StoreProvider>
-      <Provider store={store}>
+    {/* <StoreProvider> */}
+    <Provider store={store}>
       <RouterProvider router={router} />
-      </Provider>
-    </StoreProvider>
+    </Provider>
+    {/* </StoreProvider> */}
   </React.StrictMode>
 );
 
