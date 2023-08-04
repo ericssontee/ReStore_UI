@@ -4,14 +4,20 @@ import ProductList from "./ProductList";
 // import agent from "../../app/api/agent";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
-import { fetchProductsAsync, productSelectors } from "./catalogSlice";
+import {
+  fetchFilters,
+  fetchProductsAsync,
+  productSelectors,
+} from "./catalogSlice";
 import { useEffect } from "react";
 
 export default function Catalog() {
   // const [products, setProducts] = useState<Product[]>([]);
   // const [loading, setLoading] = useState(true);
   const products = useAppSelector(productSelectors.selectAll);
-  const { productsLoaded, status } = useAppSelector((state) => state.catalog);
+  const { productsLoaded, status, filtersLoaded } = useAppSelector(
+    (state) => state.catalog
+  );
   const dispatch = useAppDispatch();
 
   // useEffect(() => {
@@ -24,6 +30,10 @@ export default function Catalog() {
   useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
   }, [productsLoaded, dispatch]);
+
+  useEffect(() => {
+    if (!filtersLoaded) dispatch(fetchFilters());
+  }, [dispatch, filtersLoaded]);
 
   if (status.includes("pending"))
     return <LoadingComponent message="Loading products..." />;
